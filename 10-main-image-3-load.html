@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+</head>
+<body>
+    main
+
+
+    <!--load layer modal popup-->
+    <style type="text/css">
+        .live_pop { display: block; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background: rgba(10, 10, 10, 0.8); z-index: 4000;}
+        .live_pop .pop_wrap {
+            width:768px;
+            max-width: 768px;
+             height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%);
+            overflow: hidden; box-sizing: border-box;
+        }
+        .live_pop .pop_wrap .pop_wrap_img { position: relative;
+            width:768px;
+            height:100%;
+        }
+        .live_pop .pop_wrap .pop_wrap_img img { width:auto; height:100%; }
+    
+        .live_pop .pop_btn {width:100%; height:30px; display:flex; justify-content: flex-end; margin-bottom:10px}
+        .live_pop .pop_btn a { display:inline-block; color:#fff; font-size:13px; font-weight:300; text-align:center; line-height:2.2;  border:1px solid #fff; box-sizing: border-box;}
+        .live_pop .pop_btn .todaybtn { width: 165px; height: 30px;  }
+        .live_pop .pop_btn .closebtn {width:  76px; height: 30px; margin-left:5px;  }
+    
+        .popImgB_area a{display: inline-block;float:left}
+        
+    
+        @media screen and (max-width: 768px) {
+            .live_pop .pop_wrap {
+                width:96.0000vw;
+                max-width: 96.0000vw;
+                }
+            .live_pop .pop_wrap .pop_wrap_img { 
+                width:96.0000vw;
+                height:auto;
+            }
+            .live_pop .pop_wrap .pop_wrap_img .popImgA_area img { width:96.0000vw; height:auto; }
+            .live_pop .pop_wrap .pop_wrap_img .popImgB_area img { width:48.0000vw; height:auto; }
+    
+            
+        }
+    </style>
+    <div class="live_pop">
+        <div class="size">
+            <div class="pop_wrap" style="">
+    
+                <div class="pop_wrap_img">
+                    <div class="pop_btn">
+                        <a href="#" class="todaybtn " >오늘하루보지않기</a>
+                        <a href="#" class="closebtn ">닫기</a>
+                    </div>
+                    <div class="popImgA_area">
+                        <a href="/police/classes/online/general/relay_season2/#golink"><img src="img/A_240206.png" alt="릴레이특강바로가기" ></a>					
+                    </div>
+                    <div class="popImgB_area">					
+                        <a href="/police/classes/online/pass/"><img src="img/B_240214_01.png" alt="미래패스바로가기" ></a>
+                        <a href="/police/classes/online/pass/passUp/"><img src="img/B_240214_02.png" alt="승진미래패스바로가기" ></a>					
+                    </div>
+    
+                </div>
+    
+    
+    
+            </div>
+        </div>
+    </div>
+   <!-- 스크립트 -->
+	<script type="text/javascript">
+		var pop_cookie = {
+			cookie_arr : null,
+			set : function (name,value,options){
+				options = options || {};
+				this.cookie_arr = [escape(name) + '=' + escape(value)];
+				//-- expires
+				if (options.expires){
+					if( typeof options.expires === 'object' && options.expires instanceof Date ){
+						var date = options.expires;
+						var expires = "expires=" + date.toUTCString();
+						this.cookie_arr.push (expires);
+					}
+				}else if (options.expires_day){
+					this.set_expires_date (options.expires_day , 24*60*60);
+				}else if (options.expires_hour)	{
+					this.set_expires_date (options.expires_hour , 60*60);
+				}
+				//-- domain
+				if (options.domain){
+					var domain = "domain=" + options.domain;
+					this.cookie_arr.push (domain);
+				}
+				//-- path
+				if (options.path){
+					var path = 'path=' + options.path;
+					this.cookie_arr.push (path);
+				}
+				//-- secure
+				if( options.secure === true ){
+					var secure = 'secure';
+					this.cookie_arr.push (secure);
+				}
+				document.cookie = this.cookie_arr.join('; ');
+				//console.log (this.cookie_arr.join('; '));
+			},
+			get : function (name){
+				var nameEQ = escape(name) + "=";
+				var ca = document.cookie.split(';');
+		 
+				for(var i=0;i < ca.length;i++)
+				{
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1,c.length);
+					if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length,c.length));
+				}
+				return null;
+			},
+			del : function (name , options){
+				options = options || {};
+				options.expires_day = -1;
+				this.set ( name , '' , options );
+			},
+			set_expires_date : function (expires , time){
+				var date = new Date();
+				date.setTime(date.getTime()+(expires*time*1000));
+				var expires = "expires=" + date.toUTCString();
+				this.cookie_arr.push (expires);
+			}
+		};
+
+		if(pop_cookie.get('popview') == 'hidden'){
+			$('.live_pop').hide();
+		}else{
+			$('.live_pop').show();
+		}
+		$(".live_pop .closebtn").on("click",function(e){
+			$(".live_pop").fadeOut();
+			e.preventDefault();
+		});
+
+		var now = new Date(),
+			 year= now.getFullYear(),
+			 mon = now.getMonth(),
+			 day = now.getDate();
+
+		$(".live_pop .todaybtn").on("click",function(e){
+			//$.cookie('popup', 'hidden', {expires : 1});
+			pop_cookie.set('popview', 'hidden', { expires : new Date( year, mon, day+1, 0, 0, 0 )} );
+			$(".live_pop").fadeOut();
+			e.preventDefault();
+		});
+		</script>
+		<!-- // 스크립트 -->
+    <!--//load layer modal popup-->
+</body>
+</html>
