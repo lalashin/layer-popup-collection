@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .completeLayer {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .completeLayer {
+            display: none;
+        }  
+        .completeLayer .layerBox {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 1px 1px 7px 7px rgba(0, 0, 0, .1);
+        }
+        .completeLayer .layerBox .btnClose {           
+            position: absolute;            
+            top: -35px;
+            right: 0;
+            width: 50px; 
+            padding: 6px 12px;
+            cursor: pointer;
+            background: #000;
+        }
+        .completeLayer .title_area {
+            width: 100%;
+            padding: 15px 0;
+            color: #fff;
+            background: #10264f;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="completeLayer">
+        <div class="layerBox">
+           
+                <div class="cont">
+                    <img src="img/program.png" alt="">
+                </div>
+                <div class="close">
+                    <button class="btnClose">
+                        <img src="img/icon_close.png" alt="">
+                    </button>
+                </div>
+           
+        </div>
+    </div>
+
+    <div class="contents">
+        <h1 class="reply_btn" style="cursor: pointer;">[확인]</h1>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+
+        var couponClose = function () {
+            jQuery(".completeLayer").hide();
+        }
+
+        jQuery(".reply_btn").click(function () {
+            jQuery(".completeLayer").show();
+            jQuery(".btnClose").click(function () {
+                couponClose();
+            });
+        });
+    </script>
+</body>
+
+</html>

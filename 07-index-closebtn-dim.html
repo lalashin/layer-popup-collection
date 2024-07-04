@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .agreepop {margin:0 auto; max-width:800px;}
+        
+        .agreepop p {line-height:20px; font-size:14px;}
+
+        .agreepop {display:none;}
+        .agreepop:before {display:block; content:""; position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,.5);}
+        .agreepop .layerBox {position:fixed; left:50%; top:50%; transform:translate(-50%, -50%); padding:30px; background:#fff; border-radius:6px; box-shadow: 1px 1px 7px 7px rgba(0,0,0,.1);}
+        
+        .agreepop .layerBox .cont {margin-bottom:40px;}
+        .agreepop .layerBox p {line-height:20px; font-size:13px;}
+        .agreepop .layerBox .btnClose {display:inline-block; position:absolute; right:10px; top:10px; padding:6px 12px; color:#444; font-size:12px; cursor: pointer;}
+
+
+        li { list-style: none; }
+        
+
+    </style>
+</head>
+<body>
+    <div class="agreepop">
+        <div class="layerBox">
+            <div class="cont">
+
+
+            </div>
+            <div class="close">
+
+                <span class="btnClose">Close</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="contents">
+        <h1 class="title">page title</h1>
+        <p>
+            lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <!-- 이하 가독성을 위해 dummy text 삭제 -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+
+
+        var couponClose = function(){
+            $(".agreepop").hide();
+        }
+
+        $(document).ready(function(){
+                $(".agreepop").show();
+            $(".close").click(function(){
+                couponClose();
+                $(".agreepop").hide();
+            });
+        });
+    </script>
+
+</body>
+</html>

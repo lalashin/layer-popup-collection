@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .pop {margin:0 auto; max-width:800px;}
+        .pop p {line-height:20px; font-size:14px;}
+        .pop {display:none;}
+        .pop:before {display:block; content:""; position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,.7);}
+        .pop .layerBox {position:fixed; left:50%; top:50%; transform:translate(-50%, -50%); width: 80%; height: auto; padding:0;}
+        .pop .layerBox .cont {margin-bottom:0; width: 100%; height: 100%;}
+        .pop .layerBox .cont .video-wrap{height:100%; width:100%; position: relative; overflow: hidden;}
+        .pop .layerBox .cont .video-wrap .btn_sound_control{
+            position: fixed;
+            bottom:15px; right:150px;
+            font-size:14px;
+            line-height: 22px;
+            color:#fff !important;
+            font-weight:bold;
+            display: inline-block;
+        }
+        .pop .layerBox .cont .video-wrap .btn_sound_control::before{
+            content:'';
+            display: inline-block;
+            width:22px; height:16px;
+            background: url('img/icon_sound_on.png') center no-repeat;
+            vertical-align: -4px;
+            padding-right:10px;
+        }
+        .pop .layerBox .cont .video-wrap .btn_sound_control.off::before{
+            background: url('img/icon_sound_off.png') center no-repeat;
+        }
+        .pop .layerBox .cont video{ width: 100%;}
+        .pop .layerBox .btnClose {display:inline-block; position:absolute; right:13px; top:13px; padding:6px;  background: url('img/icon_close.png') center no-repeat; cursor: pointer;}
+        .pop .layerBox .btnTodayHide {position:absolute; right:13px; bottom:13px; color:#fff; font-size:13px; font-family: 'GmarketSansMedium'; font-weight: 100;}
+
+    </style>
+</head>
+<body>
+    <!--
+        구현 
+        1. 비디오 한개일때 사운드 제어
+        2. PC, 모바일 반응형 적용 가능
+        3. Dim처리 팝업
+        4. 오늘하루보지않기-쿠키 설정
+        5. layer popup 닫으면 video play pause
+    -->
+    <div id="pop" class="pop">
+        <div class="layerBox">
+            <div class="cont">
+                <!--비디오-->
+                <div class="video-wrap">
+                    <video class="pc-view" src="video/copyrightFree.mp4" muted loop autoplay></video>
+                    <a href="#" class="btn_sound_control off">Sound OFF</a>
+                </div>
+                <!--//비디오-->
+            </div>
+            <div class="close">
+                <span id="check" class="btnTodayHide"><input type="checkbox" value="checkbox" name="chkbox" id="chkday"/><label for="chkday"> 오늘 하루 보지 않기</label></span>
+                <span id="close" class="btnClose"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="contents">
+        <h1 class="title">Video dim layer popup</h1>
+        <p>
+            1. 비디오 한개일때 사운드 제어
+            2. PC, 모바일 반응형 적용 가능
+            3. Dim처리 팝업
+            4. 오늘하루보지않기-쿠키 설정
+            5. layer popup 닫으면 video play pause
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+    $(function(){
+        var _win = jQuery(window),
+            win_width = 0;
+
+        _win.resize(function(){
+            jQuery('.btn_sound_control').addClass('off').text('Sound OFF');
+            jQuery('.video-wrap video').prop('muted','true');
+        });
+
+        $('.btn_sound_control').click(function(event){ event.preventDefault();
+            var _this = jQuery(this);
+
+            if (_this.hasClass('off')) {
+                _this.removeClass('off').text('Sound ON');
+                $('.video-wrap video').prop('muted', false);
+
+            } else {
+                _this.addClass('off').text('Sound OFF');
+                $('.video-wrap video').prop('muted', true);
+            }
+        });
+    })
+    </script>
+    <script>
+        // 쿠키 가져오기
+        var getCookie = function (cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+
+        // 24시간 기준 쿠키 설정하기
+        var setCookie = function (cname, cvalue, exdays) {
+            var todayDate = new Date();
+            todayDate.setTime(todayDate.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires=" + todayDate.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        var couponClose = function(){
+            if($("input[name='chkbox']").is(":checked") == true){
+                setCookie("close","Y",1);   //기간( ex. 1은 하루, 7은 일주일)
+            };
+           // $("#pop").hide();
+           $("#pop").remove();
+        }
+
+        $(document).ready(function(){
+            var cookiedata = document.cookie;
+            console.log(cookiedata);
+            if(cookiedata.indexOf("close=Y")<0){
+                $("#pop").show();
+            }else{
+                //$("#pop").hide();
+                $("#pop").remove();
+            }
+            $("#close").click(function(){
+                couponClose();
+            });
+        });
+    </script>
+</body>
+</html>

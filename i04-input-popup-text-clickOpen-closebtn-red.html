@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.1/xeicon.min.css">
+
+   
+    <style>
+        li {
+            list-style:none; 
+            vertical-align: middle
+        }
+        .pauseLayerPop {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .pauseLayerPop {
+            display: none;
+        }
+        .pauseLayerPop:before {
+            display: block;
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+        }
+        .pauseLayerPop .layerBox {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            box-shadow: 1px 1px 7px 7px rgba(0, 0, 0, .1);
+        }
+        .pauseLayerPop .layerBox .title_area {
+            margin: auto;
+            width: 100%;
+            padding: 15px 0;
+            color: #fff;
+            background: #cc0000;
+        }
+        .pauseLayerPop .layerBox .title_area span {
+            padding-left: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .pauseLayerPop .layerBox .pauseNotice {
+            margin: auto;
+            width: 90%;
+            padding: 20px 15px;
+            line-height: 20px;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        .pauseLayerPop .layerBox .pauseNotice li {
+            padding-bottom: 7px;
+        }
+
+        .pauseLayerPop .btn_box {
+            text-align: center;
+            padding: 20px 0;
+            background: #fff;
+        }
+
+        .btn {
+            text-decoration: none !important;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: baseline;
+            position: relative;
+            cursor: pointer;
+            padding: 12px 10px;
+            min-width: 140px;
+            min-height: 50px;
+            line-height: 25px;
+            background: rgba(22, 65, 148, 1.0);
+            color: #fff !important;
+            margin: 0 2px;
+            text-align: center;
+            font-weight: 400;
+            box-sizing: border-box;
+            vertical-align: middle;
+            border-radius: 4px;
+        }
+
+        .pauseLayerPop .btn_box .red {background: #cc0000;}
+
+        @media screen and (max-width: 768px) {
+            .pauseLayerPop .layerBox {
+                width: 96%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="pauseLayerPop">
+        <div class="layerBox">
+            <div class="cont">
+                <div class="title_area"><span>일시정지 신청</span></div>
+                <div class="pauseNotice">
+                    <ul>
+                        <li> - 일시정지는 수강기간내 1회에 한해 30일 설정 가능합니다.
+                            (횟수 추가 및 기간 별도 설정 불가)</li>
+                        <li>- 일시정지 신청시 신청 당일부터 바로 적용되며 30일간 신청한 강의는 일시정지가 설정됩니다.</li>
+                        <li>- 일시정지 후 설정된 30일 이내에 빠른 수강(해제)을 원하실 경우 [바로수강] 버튼을 클릭하시면 당일부터 강의는 재개됩니다. (추가 일시정지 불가)</li>
+                        <li>- 자동 설정된 30일의 일시 정지 기간이 지나면 강의는 자동 재개되며, 다운로드 된 파일이 있다면 일시정지 재개 이후에 재 다운로드를 받아 수강바랍니다.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="btn_box">
+                <a href="#" class="btn red">일시정지 신청하기</a>
+                <a class="btn btn1 btnClose">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="pauseLayerPop coursesPlay">
+        <div class="layerBox">
+            <div class="cont">
+                <div class="title_area"><span>일시정지 해제 신청</span></div>
+                <div class="pauseNotice">
+                    <ul>
+                        <li> - 일시정지는 수강기간내 1회에 한해 30일 설정 가능합니다.
+                            (횟수 추가 및 기간 별도 설정 불가)</li>
+                        <li>- 일시정지 신청시 신청 당일부터 바로 적용되며 30일간 신청한 강의는 일시정지가 설정됩니다.</li>
+                        <li>- 일시정지 후 설정된 30일 이내에 빠른 수강(해제)을 원하실 경우 [바로수강] 버튼을 클릭하시면 당일부터 강의는 재개됩니다. (추가 일시정지 불가)</li>
+                        <li>- 자동 설정된 30일의 일시 정지 기간이 지나면 강의는 자동 재개되며, 다운로드 된 파일이 있다면 일시정지 재개 이후에 재 다운로드를 받아 수강바랍니다.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="btn_box">
+                <a href="#" class="btn red">일시정지 해제 신청하기</a>
+                <a class="btn btn1 btnClose">취소</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="contents">
+        <h1 class="pause_btn">일시정지신청하기</h1>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+
+        var couponClose = function () {
+            jQuery(".pauseLayerPop").hide();
+        }
+
+        jQuery(".pause_btn").click(function () {
+            jQuery(".pauseLayerPop").show();
+            jQuery(".btnClose").click(function () {
+                couponClose();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

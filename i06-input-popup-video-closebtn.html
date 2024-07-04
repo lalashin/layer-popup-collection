@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sampleVideoPop {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .sampleVideoPop p {
+            line-height: 20px;
+            font-size: 14px;
+        }
+
+        .sampleVideoPop {
+            display: none;
+        }
+
+        .sampleVideoPop:before {
+            display: block;
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+        }
+
+        .sampleVideoPop .layerBox {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #000;
+            box-shadow: 1px 1px 7px 7px rgba(0, 0, 0, .1);
+        }
+
+
+        .sampleVideoPop .layerBox .cont {
+            /* margin-bottom: 40px; */
+        }
+
+        .sampleVideoPop .layerBox .cont video {
+            width: 768px;
+            /* margin-bottom: 40px; */
+        }
+
+        .sampleVideoPop .layerBox p {
+            line-height: 20px;
+            font-size: 13px;
+        }
+
+        .sampleVideoPop .layerBox .btnClose {
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 6px 12px;
+            color: #444;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .sampleVideoPop .title_area {
+            width: 100%;
+            padding: 15px 0;
+            color: #fff;
+            background: #10264f;
+        }
+       .sampleVideoPop .title_area span {padding-left: 20px;}
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="sampleVideoPop">
+        <div class="layerBox">
+            <div class="cont">
+                <div class="title_area"><span>맛보기영상</span></div>
+                <video width="250" class="video" autoplay controls>
+                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            type="video/mp4">
+                <!-- <video src=""  controls></video> -->
+
+            </div>
+            <div class="close">
+                <span class="btnClose">Close</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="contents">
+        <h1 class="videa_area1">click</h1>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+
+        var couponClose = function () {
+            jQuery(".sampleVideoPop").hide();
+        }
+
+        jQuery(".videa_area1").click(function () {
+            jQuery(".sampleVideoPop").show();
+            jQuery(".btnClose").click(function () {
+                couponClose();
+            });
+        });
+    </script>
+</body>
+
+</html>

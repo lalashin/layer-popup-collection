@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/compat.css?1680160990">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <title>PopUp</title>
+
+    <!-- jQuery 선언 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- 팝업 공지사항 -->
+    <div class="main_secondPop">
+        <div class="main_secondPop_wrap">
+            <!--slides-->
+            <div class="secondPop_swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/20230714142836.png" class="pc_img" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/20230725105103.png" class="pc_img" alt="">
+                    </div>
+                </div>
+                <div class="swiper-pagination pc_only"></div>
+            </div>
+            <!--//slides-->
+            <a href="#" class="btn_close">close</a>
+            <a href="#"  class="today_close pc_only">오늘만 이 창을 열지 않음</a>
+        </div>
+
+    </div>
+
+    <!-- css -->
+    <style type="text/css">
+        .main_secondPop {position:fixed; right:0; bottom:0; display:block; z-index:999;border: 1px solid #f2f2f2;}
+        .main_secondPop .main_secondPop_wrap { position: relative; width: 310px;height:auto; }
+        .main_secondPop .main_secondPop_wrap .btn_close {position: absolute;bottom: 0;right: 0; width: 50%; height: 10%; background: red; opacity: .3; z-index: 1; }
+        .main_secondPop .main_secondPop_wrap .today_close {position: absolute;bottom: 0;left: 0; width: 50%; height: 10%; background: red; opacity: .3; z-index: 1; }
+
+        .main_secondPop_wrap .secondPop_swiper-container{ position: relative; box-sizing:border-box; border: 1px solid #e5e5e5; overflow: hidden;}
+        .main_secondPop_wrap .swiper-wrapper{width: 100%;}
+        @media (max-width: 768px){
+
+        }
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script>
+        let mySwiper = new Swiper('.secondPop_swiper-container', {
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+            },
+        });
+    </script>
+
+</body>
+
+</html>

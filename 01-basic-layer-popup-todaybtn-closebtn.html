@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pop {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* .pop .title {margin:10px 0; font-size:25px; font-weight:600; text-align:center;} */
+        .pop p {
+            line-height: 20px;
+            font-size: 14px;
+        }
+
+        .pop {
+            display: none;
+        }
+
+        .pop:before {
+            display: block;
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+        }
+
+        .pop .layerBox {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            /* padding: 30px; */
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 1px 1px 7px 7px rgba(0, 0, 0, .1);
+            overflow: hidden;
+        }
+
+        /* .pop .layerBox .title {margin-bottom:10px; padding-bottom:10px; font-weight:600; border-bottom:1px solid #d9d9d9; text-align: left;} */
+        .pop .layerBox .cont {
+            margin-bottom: 40px;
+           
+        }
+
+        .pop .layerBox p {
+            line-height: 20px;
+            font-size: 13px;
+        }
+
+        .pop .layerBox .btnClose {
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 6px 12px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .pop .layerBox .btnTodayHide {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #view {
+            width: 500px;
+            margin: 20px auto;
+            height: 400px;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+        }
+
+        .slide li {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .slide li img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide li.active {
+            opacity: 1;
+        }
+
+        .dot {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dot li {
+            background: #ccc;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 50%;
+            margin: 10px;
+            float: left;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .dot li.active {
+            background: #fff;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+        }
+
+
+        .title_area {
+           
+            padding: 15px;
+            color: #fff;
+            background: #10264f;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <div id="pop" class="pop">
+        <div class="layerBox">
+            <div class="cont">
+                <div class="title_area">친구 추천 이벤트</div>
+                <section id="view">
+                    <ul class="slide">
+                        <li class="active"><img src="img/1.jpg" alt="img"></li>
+                        <li><img src="img/2.jpg" alt="img"></li>
+                        <li><img src="img/3.jpg" alt="img"></li>
+
+                    </ul>
+                    <ul class="dot">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </section>
+                <p>lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            <div class="close">
+                <span id="check" class="btnTodayHide">
+                    <input type="checkbox" value="checkbox" name="chkbox"
+                        id="chkday" /><label for="chkday">오늘 하루동안 보지 않기</label></span>
+                <span id="close" class="btnClose">Close</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="contents">
+        <h1 class="title">page title</h1>
+        <p>
+            lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <!-- 이하 가독성을 위해 dummy text 삭제 -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+        // 쿠키 가져오기
+        var getCookie = function (cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+
+        // 24시간 기준 쿠키 설정하기
+        var setCookie = function (cname, cvalue, exdays) {
+            var todayDate = new Date();
+            todayDate.setTime(todayDate.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + todayDate.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        var couponClose = function () {
+            if ($("input[name='chkbox']").is(":checked") == true) {
+                setCookie("close", "Y", 1);   //기간( ex. 1은 하루, 7은 일주일)
+            }
+            $("#pop").hide();
+        }
+
+        $(document).ready(function () {
+            var cookiedata = document.cookie;
+            console.log(cookiedata);
+            if (cookiedata.indexOf("close=Y") < 0) {
+                $("#pop").show();
+            } else {
+                $("#pop").hide();
+            }
+            $("#close").click(function () {
+                couponClose();
+            });
+        });
+    </script>
+    <script>
+
+        $(".dot li").click(function () {
+            let $index = $(this).index();
+            slide($index);
+        });
+
+        setInterval("show()", 3000);
+        let cnt = 0;
+
+        function show() {
+            cnt++;
+
+            if (cnt < $(".slide li").length) {
+                slide(cnt);
+            } else {
+                cnt = 0;
+                slide(cnt);
+            }
+        }
+
+        function slide(cnt) {
+            $(".slide li").eq(cnt).addClass("active").siblings().removeClass("active");
+            $(".dot li").eq(cnt).addClass("active").siblings().removeClass("active");
+        }
+    </script>
+</body>
+
+</html>

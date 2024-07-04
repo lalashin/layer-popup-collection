@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .completeLayer {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .completeLayer {
+            display: none;
+        }  
+
+        .completeLayer .layerBox {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 1px 1px 7px 7px rgba(0, 0, 0, .1);
+        }
+
+        .completeLayer .layerBox .cont .form_area {
+            padding: 80px 20px;
+            width: 500px;
+            height: 100px;
+            text-align: center;
+        }
+        .completeLayer .layerBox .cont .form_area .replyName {
+            width: 300px; height: 30px;
+        }
+        .completeLayer .layerBox .cont .form_area .replyOk_btn {
+            width: 100px; height: 35px;
+        }
+
+        .completeLayer .layerBox .btnClose {
+            display: inline-block;
+            position: absolute;
+            width: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 70px;
+            padding: 6px 12px;
+            color: #000;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .completeLayer .title_area {
+            width: 100%;
+            padding: 15px 0;
+            color: #fff;
+            background: #10264f;
+        }
+       .completeLayer .title_area span {padding-left: 20px;}
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="completeLayer">
+        <div class="layerBox">
+            <form action="replyOk_post.php">
+                <div class="cont">
+                    <div class="title_area"><span>답변완료처리</span></div>
+                    <div class="form_area">
+                        <input type="text" name="replyName" class="replyName" >
+                        <input type="submit" class="replyOk_btn" value="확인">
+
+                    
+                    </div>
+
+                </div>
+                <div class="close">
+                    <button class="btnClose">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="contents">
+        <h1 class="reply_btn" style="cursor: pointer;">[확인]</h1>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+
+        var couponClose = function () {
+            jQuery(".completeLayer").hide();
+        }
+
+        jQuery(".reply_btn").click(function () {
+            jQuery(".completeLayer").show();
+            jQuery(".btnClose").click(function () {
+                couponClose();
+            });
+        });
+    </script>
+</body>
+
+</html>
